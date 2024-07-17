@@ -17,7 +17,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Nisha0228\\Aiadapter\\AiadapterProvider"
+                "Nisha0228\\Aiadapter\\Providers\\AiadapterProvider"
             ]
         }
     }
