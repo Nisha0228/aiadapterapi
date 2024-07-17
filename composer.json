@@ -1,0 +1,24 @@
+{
+    "name": "nisha0228/aiadapter",
+    "autoload": {
+        "psr-4": {
+            "Nisha0228\\Aiadapter\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Chamika Prasadi Nishamali",
+            "email": "nishamali0228@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nisha0228\\Aiadapter\\AiadapterProvider"
+            ]
+        }
+    }
+}

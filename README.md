@@ -1,1 +1,0 @@
-Open AI API Adapter
