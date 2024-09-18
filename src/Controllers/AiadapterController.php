@@ -40,7 +40,7 @@ class AiadapterController
                     "messages" => [
                         [
                             "role" => "user",
-                            "content" => "$quiz . Please provide the answer, difficulty level (1-3), and theme (Sets and Probability, Geometry, Measurements, Algebra, Statistics, Numbers)."
+                            "content" => "$quiz . Please provide the answer, difficulty level (1-3), and theme (Sets and Probability, Geometry, Measurements, Algebra, Statistics, Numbers), with steps."
                         ]
                     ],
                     "temperature" => 1,
