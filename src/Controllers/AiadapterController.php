@@ -74,7 +74,7 @@ class AiadapterController
 
             $client = new Client();
 
-            $question = "Give me ".$catcount." questions with answers from each theme (Sets and Probability, Geometry, Measurements, Algebra, Statistics, Numbers) with difficulty level of ".$difficulty. "(1-3)";
+            $question = "Give me ".$catcount." questions with answers in steps from each theme (Sets and Probability, Geometry, Measurements, Algebra, Statistics, Numbers) with difficulty level of ".$difficulty. "(1-3) provide in json strucutre";
 
             $response = $client->post($this->openAIEndpoint, [
                 'headers' => [
@@ -103,11 +103,7 @@ class AiadapterController
             // Extract the relevant data from the response
             $message = $responseData['choices'][0]['message']['content'] ?? 'No response received';
 
-            $question = 'Question:'.$catcount.' question from each Theme with the difficulty level of '.$difficulty;
-
-            $fullResponse = $question ."<br>". $message;
-
-            return $fullResponse;
+            return $message;
 
         } catch (Exception $exception) {
 
@@ -121,7 +117,7 @@ class AiadapterController
 
             $client = new Client();
 
-            $question = "Give me ".$count." questions with answers from the theme ".$theme." of (Sets and Probability, Geometry, Measurements, Algebra, Statistics, Numbers) with the difficulty level of ".$difficulty. "(1-3)";
+            $question = "Give me ".$count." questions with answers in steps from the theme ".$theme." of (Sets and Probability, Geometry, Measurements, Algebra, Statistics, Numbers) with the difficulty level of ".$difficulty. "(1-3) provide in json strucutre";
 
             $response = $client->post($this->openAIEndpoint, [
                 'headers' => [
@@ -150,11 +146,7 @@ class AiadapterController
             // Extract the relevant data from the response
             $message = $responseData['choices'][0]['message']['content'] ?? 'No response received';
 
-            $question = 'Question:'.$count.' question from Theme '.$theme.' with the difficulty level of '.$difficulty;
-
-            $fullResponse = $question ."<br>". $message;
-
-            return $fullResponse;
+            return $message;
 
         } catch (Exception $exception) {
 
