@@ -96,12 +96,16 @@ class AiadapterController
                     "presence_penalty" =>0
                 ],
             ]);
-            
+
             // Decode the response
             $responseData = json_decode($response->getBody()->getContents(), true);
 
             // Extract the relevant data from the response
             $message = $responseData['choices'][0]['message']['content'] ?? 'No response received';
+
+            $question = 'Question:'.$catcount.' question from each Theme with the difficulty level of '.$difficulty;
+
+            $fullResponse = $question ."<br>". $message;
 
             return $message;
 
@@ -146,7 +150,56 @@ class AiadapterController
             // Extract the relevant data from the response
             $message = $responseData['choices'][0]['message']['content'] ?? 'No response received';
 
+            $question = 'Question:'.$count.' question from Theme '.$theme.' with the difficulty level of '.$difficulty;
+
+            $fullResponse = $question ."<br>". $message;
+
             return $message;
+
+        } catch (Exception $exception) {
+
+            return $exception->getMessage();
+        }
+    }
+
+    public function checkAnswer($quiz, $answer)
+    {
+
+        try {
+
+            $client = new Client();
+
+            $response = $client->post($this->openAIEndpoint, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer '.$this->openAIKey,
+                ],
+                'json' => [
+                    "model" => $this->model,
+                    "messages" => [
+                        [
+                            "role" => "user",
+                            "content" => "$quiz . Please check this answer ".$answer." , if correct : YES, if wrong : NO."
+                        ]
+                    ],
+                    "temperature" => 1,
+                    "max_tokens" => 256,
+                    "top_p" => 1,
+                    "frequency_penalty" => 0,
+                    "presence_penalty" =>0
+                ],
+            ]);
+
+            // Decode the response
+            $responseData = json_decode($response->getBody()->getContents(), true);
+
+            // Extract the relevant data from the response
+            $message = $responseData['choices'][0]['message']['content'] ?? 'No response received';
+
+            $response = 'Question:'.$quiz.$message;
+
+            return $message;
+
 
         } catch (Exception $exception) {
 
